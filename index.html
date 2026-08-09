@@ -3,31 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homecall Haircut Services by Zen</title>
+    <title>Homecall haircut services by zen</title>
     <!-- FontAwesome for Social Media Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* General Reset and Base Styles */
+        /* Base Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Helvetica Neue', Arial, sans-serif;
         }
-        
+
         body {
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: #121212;
+            color: #ffffff;
             line-height: 1.6;
         }
 
-        /* Hero Section with Background and Animation */
+        /* Hero Section with 20s Background Slideshow */
         .hero {
             position: relative;
             height: 100vh;
             min-height: 600px;
-            /* Using a professional high-quality background image */
-            background: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -38,31 +36,39 @@
             overflow: hidden;
         }
 
-        /* Dark overlay to make text readable */
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 0;
+        }
+
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.65);
             z-index: 1;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 850px;
         }
 
-        /* Slowly moving words animation */
+        /* Slowly Moving Animated Text */
         .animated-text {
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUpSlow 2.5s ease-out forwards;
+            transform: translateY(35px);
+            animation: fadeUpSlow 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
-        
-        .delay-1 { animation-delay: 0.5s; }
-        .delay-2 { animation-delay: 1.5s; }
-        .delay-3 { animation-delay: 2.5s; }
+
+        .delay-1 { animation-delay: 0.6s; }
+        .delay-2 { animation-delay: 1.6s; }
+        .delay-3 { animation-delay: 2.6s; }
 
         @keyframes fadeUpSlow {
             to {
@@ -72,65 +78,102 @@
         }
 
         .brand-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             margin-bottom: 20px;
-            color: #e0ca9e; /* Elegant gold accent */
+            color: #d4af37; /* Warm Gold */
+            font-weight: 600;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 20px;
             font-weight: 300;
+            line-height: 1.2;
         }
 
         .hero p {
             font-size: 1.2rem;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
+            color: #e0e0e0;
             font-weight: 300;
         }
 
         /* Book Now Button */
         .btn-book {
             display: inline-block;
-            padding: 15px 40px;
-            background-color: #e0ca9e;
-            color: #111;
+            padding: 16px 42px;
+            background-color: #d4af37;
+            color: #000000;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             border-radius: 30px;
-            transition: all 0.3s ease;
             font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
         .btn-book:hover {
-            background-color: #fff;
-            transform: scale(1.05);
+            background-color: #ffffff;
+            color: #000000;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
         }
 
         /* Social Media Section */
         .social-bar {
-            background-color: #111;
-            padding: 20px 0;
+            background-color: #0a0a0a;
+            padding: 25px 0;
             text-align: center;
+            border-bottom: 1px solid #222;
         }
 
-        .social-bar a {
-            color: #fff;
-            font-size: 24px;
-            margin: 0 15px;
-            transition: color 0.3s ease;
-            text-decoration: none;
+        .social-bar p {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .social-bar a:hover {
-            color: #e0ca9e;
+        .social-icons a {
+            color: #ffffff;
+            font-size: 26px;
+            margin: 0 18px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
         }
 
-        /* Simple Portfolio/Gallery Section */
+        .social-icons a:hover {
+            color: #d4af37;
+            transform: translateY(-3px);
+        }
+
+        /* About / Services Brief */
+        .services-info {
+            padding: 50px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            border-bottom: 1px solid #222;
+        }
+
+        .services-info h2 {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .services-info p {
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+
+        /* Gallery Section - Full Uncropped Picture Cards */
         .gallery-section {
             padding: 60px 20px;
             max-width: 1200px;
@@ -139,34 +182,59 @@
         }
 
         .gallery-section h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 40px;
+            color: #ffffff;
             font-weight: 300;
+            letter-spacing: 1px;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
         }
 
-        .gallery-item {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+        .gallery-card {
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #2a2a2a;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
         }
 
-        .gallery-item:hover {
+        .gallery-card:hover {
             transform: translateY(-5px);
+            border-color: #d4af37;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain; /* Ensures full picture shows without cropping text/faces */
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #050505;
+            color: #666;
+            font-size: 0.9rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .hero p { font-size: 1rem; }
+            .brand-title { font-size: 1.1rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -174,6 +242,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <div id="hero-bg" class="hero-bg"></div>
         <div class="hero-content">
             <div class="brand-title animated-text">Homecall haircut services by zen</div>
             
@@ -182,7 +251,6 @@
             <p class="animated-text delay-2">We transform your hair to its fullest potential - personalized to your needs, style, and for any occasion.</p>
             
             <div class="animated-text delay-3">
-                <!-- Directs to WhatsApp specific number -->
                 <a href="https://wa.me/6588498631" target="_blank" class="btn-book">Book Now!</a>
             </div>
         </div>
@@ -190,31 +258,90 @@
 
     <!-- Social Media Links (Ordered as requested) -->
     <section class="social-bar">
-        <!-- WhatsApp -->
-        <a href="https://wa.me/6588498631" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <!-- Facebook (Placeholder) -->
-        <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/homecall_haircut_service?igsh=MW56bWQzZGc0OWk5bA%3D%3D&utm_source=qr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <!-- TikTok (Placeholder) -->
-        <a href="#" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-    </section>
-
-    <!-- Simple Portfolio Gallery -->
-    <section class="gallery-section">
-        <h2>Our Transformations</h2>
-        <div class="gallery-grid">
-            <img src="2-1ef714dd.jpg" alt="Elderly Haircut Transformation" class="gallery-item">
-            <img src="1-1ef714dd.jpg" alt="Womens Haircut Transformation" class="gallery-item">
-            <img src="WhatsApp Image 2026-08-09 at 11.10.55 PM.jpeg" alt="Mens Trimming Before After" class="gallery-item">
-            <img src="1778662875139153.jpg" alt="Bedridden Haircut Service" class="gallery-item">
-            <img src="1782724389559935.jpg" alt="Homecall Haircut" class="gallery-item">
-            <img src="1782724436840189.jpg" alt="Elderly Hair Washing at Home" class="gallery-item">
-            <img src="IMG_9199.jpg" alt="Elderly Haircut Before After" class="gallery-item">
-            <img src="IMG_9397.jpg" alt="Elderly Haircut Home Service" class="gallery-item">
-            <img src="IMG_9411.jpg" alt="Short Haircut Transformation" class="gallery-item">
+        <p>Connect With Us</p>
+        <div class="social-icons">
+            <!-- 1. WhatsApp -->
+            <a href="https://wa.me/6588498631" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <!-- 2. Facebook -->
+            <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <!-- 3. Instagram -->
+            <a href="https://www.instagram.com/homecall_haircut_service?igsh=MW56bWQzZGc0OWk5bA%3D%3D&utm_source=qr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <!-- 4. TikTok -->
+            <a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
     </section>
+
+    <!-- Brief Service Description -->
+    <section class="services-info">
+        <h2>Door-to-Door Mobile Haircut Services</h2>
+        <p>Providing comfortable, safe, and professional haircut services at your doorstep. Specialized in haircuts for elderly, wheelchair-bound, bedridden, and house-call clients across Singapore.</p>
+    </section>
+
+    <!-- Transformations Gallery Section -->
+    <section class="gallery-section">
+        <h2>Our Work & Transformations</h2>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <img src="2-1ef714dd.jpg" alt="Elderly Haircuts Before and After">
+            </div>
+            <div class="gallery-card">
+                <img src="1-1ef714dd.jpg" alt="Female Haircut Before After">
+            </div>
+            <div class="gallery-card">
+                <img src="WhatsApp%20Image%202026-08-09%20at%2011.10.55%20PM.jpeg" alt="Elderly Haircut Trimming">
+            </div>
+            <div class="gallery-card">
+                <img src="1778662875139153.jpg" alt="Wheelchair and Bedridden Haircut Service">
+            </div>
+            <div class="gallery-card">
+                <img src="1782724389559935.jpg" alt="Haircut Service by Zen">
+            </div>
+            <div class="gallery-card">
+                <img src="1782724436840189.jpg" alt="Homecall Haircut Washing & Styling">
+            </div>
+            <div class="gallery-card">
+                <img src="IMG_9199.jpg" alt="Elderly Haircut Transformation">
+            </div>
+            <div class="gallery-card">
+                <img src="IMG_9397.jpg" alt="Bedridden Haircut Service Before After">
+            </div>
+            <div class="gallery-card">
+                <img src="IMG_9411.jpg" alt="Short Haircut Transformation by Zen">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; Homecall haircut services by zen. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Background Rotator Script (Changes background every 20 seconds) -->
+    <script>
+        const backgrounds = [
+            'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80',
+            'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1920&q=80',
+            'https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1920&q=80',
+            'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1920&q=80'
+        ];
+
+        let currentIndex = 0;
+        const bgElement = document.getElementById('hero-bg');
+
+        function changeBackground() {
+            bgElement.style.opacity = '0.3';
+            setTimeout(() => {
+                bgElement.style.backgroundImage = `url('${backgrounds[currentIndex]}')`;
+                bgElement.style.opacity = '1';
+                currentIndex = (currentIndex + 1) % backgrounds.length;
+            }, 800);
+        }
+
+        // Initialize first background
+        changeBackground();
+
+        // Rotate background every 20,000 ms (20 seconds)
+        setInterval(changeBackground, 20000);
+    </script>
 
 </body>
 </html>

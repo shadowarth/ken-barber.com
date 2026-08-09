@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homecall Haircut Services by Zen</title>
+    <!-- FontAwesome for Social Media Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* General Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Hero Section with Background and Animation */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            /* Using a professional high-quality background image */
+            background: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* Dark overlay to make text readable */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        /* Slowly moving words animation */
+        .animated-text {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUpSlow 2.5s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.5s; }
+        .delay-2 { animation-delay: 1.5s; }
+        .delay-3 { animation-delay: 2.5s; }
+
+        @keyframes fadeUpSlow {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .brand-title {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            color: #e0ca9e; /* Elegant gold accent */
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* Book Now Button */
+        .btn-book {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #e0ca9e;
+            color: #111;
+            text-decoration: none;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .btn-book:hover {
+            background-color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Social Media Section */
+        .social-bar {
+            background-color: #111;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .social-bar a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-bar a:hover {
+            color: #e0ca9e;
+        }
+
+        /* Simple Portfolio/Gallery Section */
+        .gallery-section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .gallery-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="brand-title animated-text">Homecall haircut services by zen</div>
+            
+            <h1 class="animated-text delay-1">Professional and Premier Hair Services in Singapore!</h1>
+            
+            <p class="animated-text delay-2">We transform your hair to its fullest potential - personalized to your needs, style, and for any occasion.</p>
+            
+            <div class="animated-text delay-3">
+                <!-- Directs to WhatsApp specific number -->
+                <a href="https://wa.me/6588498631" target="_blank" class="btn-book">Book Now!</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Links (Ordered as requested) -->
+    <section class="social-bar">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/6588498631" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <!-- Facebook (Placeholder) -->
+        <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/homecall_haircut_service?igsh=MW56bWQzZGc0OWk5bA%3D%3D&utm_source=qr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <!-- TikTok (Placeholder) -->
+        <a href="#" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+    </section>
+
+    <!-- Simple Portfolio Gallery -->
+    <section class="gallery-section">
+        <h2>Our Transformations</h2>
+        <div class="gallery-grid">
+            <img src="2-1ef714dd.jpg" alt="Elderly Haircut Transformation" class="gallery-item">
+            <img src="1-1ef714dd.jpg" alt="Womens Haircut Transformation" class="gallery-item">
+            <img src="WhatsApp Image 2026-08-09 at 11.10.55 PM.jpeg" alt="Mens Trimming Before After" class="gallery-item">
+            <img src="1778662875139153.jpg" alt="Bedridden Haircut Service" class="gallery-item">
+            <img src="1782724389559935.jpg" alt="Homecall Haircut" class="gallery-item">
+            <img src="1782724436840189.jpg" alt="Elderly Hair Washing at Home" class="gallery-item">
+            <img src="IMG_9199.jpg" alt="Elderly Haircut Before After" class="gallery-item">
+            <img src="IMG_9397.jpg" alt="Elderly Haircut Home Service" class="gallery-item">
+            <img src="IMG_9411.jpg" alt="Short Haircut Transformation" class="gallery-item">
+        </div>
+    </section>
+
+</body>
+</html>

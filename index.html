@@ -218,6 +218,59 @@
             max-height: 500px;
             object-fit: contain;
             border-radius: 8px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-card img:hover {
+            opacity: 0.9;
+        }
+
+        /* Zoom Lightbox Overlay */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 40px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+            animation: zoomIn 0.3s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 10000;
+        }
+
+        .modal-close:hover {
+            color: #d4af37;
         }
 
         /* Footer */
@@ -235,6 +288,7 @@
             .hero p { font-size: 1rem; }
             .brand-title { font-size: 1.1rem; }
             .gallery-grid { grid-template-columns: 1fr; }
+            .modal-close { top: 15px; right: 20px; font-size: 35px; }
         }
     </style>
 </head>
@@ -256,7 +310,7 @@
         </div>
     </section>
 
-    <!-- Social Media Links (Ordered as requested) -->
+    <!-- Social Media Links -->
     <section class="social-bar">
         <p>Connect With Us</p>
         <div class="social-icons">
@@ -267,7 +321,7 @@
             <!-- 3. Instagram -->
             <a href="https://www.instagram.com/homecall_haircut_service?igsh=MW56bWQzZGc0OWk5bA%3D%3D&utm_source=qr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
             <!-- 4. TikTok -->
-            <a href="www.tiktok.com/@zenbee0185" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.tiktok.com/@zenbee0185" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
     </section>
 
@@ -311,12 +365,19 @@
         </div>
     </section>
 
+    <!-- Zoom Modal Lightbox -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
     <footer>
         <p>&copy; Homecall haircut services by zen. All Rights Reserved.</p>
     </footer>
 
-    <!-- Background Rotator Script (Changes background every 20 seconds) -->
+    <!-- Scripts -->
     <script>
+        // 1. Background Rotator Script (20 Seconds)
         const backgrounds = [
             'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80',
             'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1920&q=80',
@@ -336,11 +397,31 @@
             }, 800);
         }
 
-        // Initialize first background
         changeBackground();
-
-        // Rotate background every 20,000 ms (20 seconds)
         setInterval(changeBackground, 20000);
+
+        // 2. Clickable Image Zoom (Lightbox Modal)
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImg');
+        const closeBtn = document.querySelector('.modal-close');
+
+        document.querySelectorAll('.gallery-card img').forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = 'block';
+                modalImg.src = this.src;
+                modalImg.alt = this.alt;
+            });
+        });
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        };
+
+        modal.onclick = function(e) {
+            if (e.target !== modalImg) {
+                modal.style.display = 'none';
+            }
+        };
     </script>
 
 </body>

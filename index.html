@@ -98,7 +98,7 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background-size: cover;
             background-position: center;
-            transition: opacity 0.5s ease-in-out; /* Sped up to accommodate 1.5s interval */
+            transition: opacity 0.5s ease-in-out;
             z-index: 0;
         }
 
@@ -179,16 +179,17 @@
             box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
         }
 
-        /* Circular Logo Below Button */
-        .hero-logo {
-            width: 140px; 
-            height: 140px;
+        /* Service Section Logo - Enlarged for Desktop */
+        .service-logo {
+            width: 250px; 
+            height: 250px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #d4af37;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
-            margin-top: 35px;
-            background-color: #fff; /* In case the logo has transparent edges */
+            border: 4px solid #d4af37;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+            background-color: #fff;
+            margin: 0 auto 30px auto; /* Centered with bottom margin */
+            display: block;
         }
 
         /* Social Media Section & Colors */
@@ -537,12 +538,13 @@
             margin: 0 25px;
         }
 
+        /* Media Queries for Mobile Responsiveness */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .hero p { font-size: 1rem; }
             .content-section h2 { font-size: 1.8rem; }
             footer .social-icons a { font-size: 36px; margin: 0 15px; }
-            .hero-logo { width: 110px; height: 110px; }
+            .service-logo { width: 150px; height: 150px; } /* Scaled down for mobile */
         }
     </style>
 </head>
@@ -584,10 +586,6 @@
             <p class="animated-text delay-2">We transform your hair to its fullest potential - personalized to your needs, style, and for any occasion.</p>
             <div class="animated-text delay-3">
                 <a href="#contact" class="btn-book">Book Now!</a>
-                <!-- Circular Logo added here -->
-                <div>
-                    <img src="logo.jpeg" alt="Zen Barber Homecall" class="hero-logo">
-                </div>
             </div>
         </div>
     </section>
@@ -603,8 +601,11 @@
         </div>
     </section>
 
-    <!-- Brief Service Description -->
+    <!-- Brief Service Description WITH ENLARGED LOGO -->
     <section class="content-section">
+        <!-- Re-positioned Logo -->
+        <img src="image_628dfb.png" alt="Zen Barber Homecall" class="service-logo">
+        
         <h2>Door-to-Door Mobile Haircut Services</h2>
         <p>Providing comfortable, safe, and professional haircut services at your doorstep. Specialized in haircuts for elderly, wheelchair-bound, bedridden, and house-call clients across Singapore.</p>
     </section>

@@ -491,6 +491,33 @@
             transform: scale(1.1);
             background-color: #fff;
         }
+        
+        /* Floating Promotion Tab */
+        .promo-tab {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background-color: #d4af37;
+            color: #000;
+            padding: 15px 10px;
+            border-radius: 10px 0 0 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: -4px 0 15px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+        }
+
+        .promo-tab:hover {
+            background-color: #ffffff;
+            padding-right: 15px; /* Slight pop-out effect on hover */
+        }
 
         /* Footer */
         footer {
@@ -528,6 +555,11 @@
             <img src="pop up ad.jpeg" alt="Special Promotion">
         </div>
     </div>
+    
+    <!-- Floating Promo Tab -->
+    <div class="promo-tab" onclick="openPopup()">
+        Promotion
+    </div>
 
     <!-- Transparent Header with Hamburger Menu -->
     <header class="header">
@@ -538,6 +570,8 @@
             <a href="#home" onclick="toggleMenu()">Home</a>
             <a href="#prices" onclick="toggleMenu()">Prices</a>
             <a href="#contact" onclick="toggleMenu()">Contact</a>
+            <!-- New Promo Link added to menu -->
+            <a href="javascript:void(0);" onclick="toggleMenu(); openPopup();">Promotion</a>
         </nav>
     </header>
 
@@ -679,6 +713,11 @@
 
         function closePopup() {
             document.getElementById('welcomePopup').classList.remove('show');
+        }
+        
+        // New function to open the popup manually
+        function openPopup() {
+            document.getElementById('welcomePopup').classList.add('show');
         }
 
         // Hamburger Menu Toggle

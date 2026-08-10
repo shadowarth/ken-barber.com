@@ -78,11 +78,11 @@
             color: #d4af37;
         }
 
-        /* Hero Section with 20s Background Slideshow */
+        /* Hero Section with Fast Background Slideshow */
         .hero {
             position: relative;
             height: 100vh;
-            min-height: 600px;
+            min-height: 700px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -98,7 +98,7 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background-size: cover;
             background-position: center;
-            transition: opacity 1.5s ease-in-out;
+            transition: opacity 0.5s ease-in-out; /* Sped up to accommodate 1.5s interval */
             z-index: 0;
         }
 
@@ -179,6 +179,18 @@
             box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
         }
 
+        /* Circular Logo Below Button */
+        .hero-logo {
+            width: 140px; 
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #d4af37;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+            margin-top: 35px;
+            background-color: #fff; /* In case the logo has transparent edges */
+        }
+
         /* Social Media Section & Colors */
         .social-bar {
             background-color: #0a0a0a;
@@ -215,7 +227,7 @@
             text-shadow: 1px 1px 0px #00f2fe, -1px -1px 0px #fe0979; 
         }
 
-        /* Content Sections (Prices, Contact, Services) */
+        /* Content Sections */
         .content-section {
             padding: 80px 20px;
             max-width: 1000px;
@@ -239,7 +251,7 @@
             margin-bottom: 40px;
         }
 
-        /* Nicer Price Cards Grid */
+        /* Price Cards Grid */
         .price-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -380,7 +392,7 @@
             transition: opacity 0.3s ease;
         }
 
-        /* Zoom Lightbox Overlay */
+        /* Lightbox Overlay */
         .modal {
             display: none;
             position: fixed;
@@ -420,6 +432,66 @@
             z-index: 10000;
         }
 
+        /* Popup Ad Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .popup-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            animation: zoomIn 0.4s ease-out;
+        }
+
+        .popup-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            display: block;
+        }
+
+        .popup-close-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background-color: #d4af37;
+            color: #000;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: transform 0.2s, background-color 0.2s;
+            z-index: 100000;
+        }
+
+        .popup-close-btn:hover {
+            transform: scale(1.1);
+            background-color: #fff;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -433,21 +505,29 @@
             margin-bottom: 25px;
         }
 
-        /* MADE FOOTER ICONS BIGGER */
         footer .social-icons a {
-            font-size: 42px; /* Increased Size */
-            margin: 0 25px;  /* Spaced them out a bit more */
+            font-size: 42px;
+            margin: 0 25px;
         }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .hero p { font-size: 1rem; }
             .content-section h2 { font-size: 1.8rem; }
-            footer .social-icons a { font-size: 36px; margin: 0 15px; } /* Slightly smaller on mobile but still big */
+            footer .social-icons a { font-size: 36px; margin: 0 15px; }
+            .hero-logo { width: 110px; height: 110px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Auto-Greeting Welcome Popup Ad -->
+    <div id="welcomePopup" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-close-btn" onclick="closePopup()">&times;</div>
+            <img src="pop up ad.jpeg" alt="Special Promotion">
+        </div>
+    </div>
 
     <!-- Transparent Header with Hamburger Menu -->
     <header class="header">
@@ -470,6 +550,10 @@
             <p class="animated-text delay-2">We transform your hair to its fullest potential - personalized to your needs, style, and for any occasion.</p>
             <div class="animated-text delay-3">
                 <a href="#contact" class="btn-book">Book Now!</a>
+                <!-- Circular Logo added here -->
+                <div>
+                    <img src="logo.jpeg" alt="Zen Barber Homecall" class="hero-logo">
+                </div>
             </div>
         </div>
     </section>
@@ -585,13 +669,25 @@
 
     <!-- Scripts -->
     <script>
+        // Welcome Popup Ad Script
+        window.addEventListener('DOMContentLoaded', () => {
+            // Displays popup half a second after loading
+            setTimeout(() => {
+                document.getElementById('welcomePopup').classList.add('show');
+            }, 500);
+        });
+
+        function closePopup() {
+            document.getElementById('welcomePopup').classList.remove('show');
+        }
+
         // Hamburger Menu Toggle
         function toggleMenu() {
             const navMenu = document.getElementById('navMenu');
             navMenu.classList.toggle('active');
         }
 
-        // Background Rotator Script
+        // Background Rotator Script (Sped up to 1.5s interval)
         const backgrounds = [
             'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80',
             'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1920&q=80',
@@ -604,15 +700,17 @@
 
         function changeBackground() {
             bgElement.style.opacity = '0.3';
+            // Swap image quickly in the middle of the transition
             setTimeout(() => {
                 bgElement.style.backgroundImage = `url('${backgrounds[currentIndex]}')`;
                 bgElement.style.opacity = '1';
                 currentIndex = (currentIndex + 1) % backgrounds.length;
-            }, 800);
+            }, 500);
         }
 
         changeBackground();
-        setInterval(changeBackground, 20000);
+        // Changed interval from 20000ms (20s) to 1500ms (1.5s)
+        setInterval(changeBackground, 1500);
 
         // Clickable Image Zoom (Lightbox Modal)
         const modal = document.getElementById('imageModal');
